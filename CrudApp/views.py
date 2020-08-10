@@ -3,6 +3,14 @@ from .forms import PostForm
 from .models import Post
 from django.views.generic import ListView, DetailView
 
+# Crud/views.py
+from rest_framework import viewsets          # add this
+from .serializers import PostSerializer      # add this
+
+class PostView(viewsets.ModelViewSet):       # add this
+    serializer_class = PostSerializer          # add this
+    queryset = Post.objects.all()
+
 #home view for posts. Posts are displayed in a list
 class IndexView(ListView):
     template_name='Crud/index.html'
